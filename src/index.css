@@ -1,0 +1,89 @@
+#root,
+.App {
+  height: 100%;
+}
+body {
+  background-color: #ecf1f5;
+}
+
+.sidebar {
+  background-color: #fff;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.App {
+  display: flex;
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.actionbar {
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 -6px 20px 0px rgb(0 0 0 / 10%);
+  margin-top: auto;
+}
+
+.tree-wrap {
+  padding: 12px 6px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tree-wrap .search-result {
+  margin-top: auto;
+  box-shadow: 0 -6px 20px 0px rgb(0 0 0 / 10%);
+}
+
+.form-content {
+  background-color: #fff;
+  min-height: 400px;
+  overflow: auto;
+  padding: 12px 6px;
+}
+
+.users-table {
+  margin-right: 60px;
+  margin-bottom: 32px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+.users-table td,
+.users-table th {
+  border: 1px solid #dddddd;
+  text-align: right;
+  padding: 8px;
+}
+
+.search-icon-wrapper svg {
+  width: 16px;
+  height: 16px;
+}
+
+.search-icon-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.search-items {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.search-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.parent-tree__branch {
+  padding-right: 10px;
+}

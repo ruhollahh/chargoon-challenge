@@ -1,28 +1,33 @@
-import { AutoComplete, Button } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-import { getUsers } from '../../transportLayer';
+import { AutoComplete, Button } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { getUsers } from "../../transportLayer";
 
+interface Props {
+  handleAddUser: (userTitle: string) => void;
+}
 
-const UserAutoComplete: React.FC = () => {
+const UserAutoComplete: React.FC<Props> = ({ handleAddUser }) => {
   const orginalOptions = useRef([]);
-  const [options, setOptions] = useState<{ label: string; value: string }[]>([]);
+  const [options, setOptions] = useState<{ label: string; value: string }[]>(
+    []
+  );
+  const [selected, setSelected] = useState<string>("");
 
   useEffect(() => {
     getUsers().then((users) => {
       orginalOptions.current = users;
       setOptions(users);
-    })
+    });
   }, []);
-
 
   const onSearch = (searchText: string) => {
     setOptions(
-      orginalOptions.current.filter(o => o.label.indexOf(searchText) > -1 )
+      orginalOptions.current.filter((o) => o.label.indexOf(searchText) > -1)
     );
   };
 
   const onSelect = (data: string) => {
-    console.log('onSelect', data);
+    setSelected(data);
   };
 
   return (
@@ -34,7 +39,7 @@ const UserAutoComplete: React.FC = () => {
         onSearch={onSearch}
         placeholder="جستجوی کاربر"
       />
-     <Button >افزودن</Button>
+      <Button onClick={() => handleAddUser(selected)}>افزودن</Button>
     </>
   );
 };

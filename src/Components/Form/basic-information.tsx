@@ -31,17 +31,30 @@ function BasicInformation({}: Props) {
     });
   };
 
+  const handleAddUser = (userTitle: string) => {
+    if (userTitle !== "") {
+      setUsers((prevUsers) => [
+        ...prevUsers,
+        {
+          title: userTitle,
+          isDefault: false,
+        },
+      ]);
+    }
+  };
+
   const onFinish = (values: any) => {
     finishAddNode({ ...values, users });
   };
 
   useEffect(() => {
-	if (mode === "edit" && selectedNode) {
-		form.setFieldsValue(selectedNode)
-	} else {
-		form.resetFields();
-	}
-  }, [form, mode, selectedNode])
+    if (mode === "edit" && selectedNode) {
+      form.setFieldsValue(selectedNode);
+      setUsers(selectedNode.users);
+    } else {
+      form.resetFields();
+    }
+  }, [form, mode, selectedNode]);
 
   return (
     <Form form={form} onFinish={onFinish}>
@@ -52,15 +65,15 @@ function BasicInformation({}: Props) {
         <Input />
       </Form.Item>
       <Form.Item name="users" label="کاربران" labelCol={{ span: 2 }}>
-        <UserAutoComplete />
+        <UserAutoComplete handleAddUser={handleAddUser} />
       </Form.Item>
+      <Table
+        users={users}
+        handleDeleteUser={handleDeleteUser}
+        handleToggleDefault={handleToggleDefault}
+      />
       {mode === "add" && (
         <>
-          <Table
-            users={users}
-            handleDeleteUser={handleDeleteUser}
-            handleToggleDefault={handleToggleDefault}
-          />
           <Button type="primary" htmlType="submit">
             ذخیره
           </Button>

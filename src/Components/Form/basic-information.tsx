@@ -52,6 +52,7 @@ function BasicInformation({}: Props) {
       form.setFieldsValue(selectedNode);
       setUsers(selectedNode.users);
     } else {
+      setUsers(mockUsers);
       form.resetFields();
     }
   }, [form, mode, selectedNode]);
@@ -73,11 +74,9 @@ function BasicInformation({}: Props) {
         handleToggleDefault={handleToggleDefault}
       />
       {mode === "add" && (
-        <>
-          <Button type="primary" htmlType="submit">
-            ذخیره
-          </Button>
-        </>
+        <Button type="primary" htmlType="submit">
+          ذخیره
+        </Button>
       )}
     </Form>
   );

@@ -11,6 +11,10 @@ interface Props {
 }
 
 const Branch = ({ parentTree }: { parentTree: ParentTreeType }) => {
+  if (!parentTree.node) {
+    return null
+  }
+
   return (
     <div className="parent-tree__branch">
       <p>{parentTree.node.title}</p>

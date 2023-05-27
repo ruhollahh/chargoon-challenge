@@ -64,7 +64,7 @@ type TreeDataState = {
   entities: NodeType[];
   nodeInClipboard: NodeType | null;
   form: {
-    mode: "add" | "edit"
+    mode: "add" | "edit" | "idle";
     parentNode: NodeType | null;
     selectedNode: NodeType | null;
   }
@@ -74,7 +74,7 @@ export const initialTreeDataState: TreeDataState = {
   entities: [],
   nodeInClipboard: null,
   form: {
-    mode: "edit",
+    mode: "idle",
     parentNode: null,
     selectedNode: null
   }
@@ -109,7 +109,7 @@ const treeDataReducer = (
         ...state,
         entities: addNewNode(state.entities, action.payload.draftNode, state.form.parentNode),
         form: {
-          mode: "edit",
+          mode: "idle",
           parentNode: null,
           selectedNode: null,
         },

@@ -68,11 +68,13 @@ function BasicInformation({}: Props) {
       <Form.Item name="users" label="کاربران" labelCol={{ span: 2 }}>
         <UserAutoComplete handleAddUser={handleAddUser} />
       </Form.Item>
-      <Table
-        users={users}
-        handleDeleteUser={handleDeleteUser}
-        handleToggleDefault={handleToggleDefault}
-      />
+      {mode !== "idle" && (
+        <Table
+          users={users}
+          handleDeleteUser={handleDeleteUser}
+          handleToggleDefault={handleToggleDefault}
+        />
+      )}
       {mode === "add" && (
         <Button type="primary" htmlType="submit">
           ذخیره
